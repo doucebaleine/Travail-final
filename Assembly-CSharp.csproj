@@ -100,6 +100,7 @@
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\EnableIfAttribute.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Pixel Art Platformer - Village Props\Script\Chest.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\ShowInInspectorAttribute.cs" />
+    <Compile Include="Assets\Script\gestionCorbeau.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Common\Script\Utils\SecondOrderDynamics.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\HideIfAttribute.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\PropertyOrderAttribute.cs" />
