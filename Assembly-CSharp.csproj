@@ -96,6 +96,7 @@
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\ValidateInputAttribute.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\AssetsOnlyAttribute.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\BlockquoteAttribute.cs" />
+    <Compile Include="Assets\Script\defilement arriereplan.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\EnableIfAttribute.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Pixel Art Platformer - Village Props\Script\Chest.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Runtime\Attributes\ShowInInspectorAttribute.cs" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <None Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\License.txt" />
     <None Include="Assets\Ville\Autre\Import\Pixel Art Platformer - Village Props\Changelog.txt" />
+    <None Include="Assets\Ville\Autre\platformer items - free assets\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

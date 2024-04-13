@@ -75,8 +75,8 @@
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\Attributes\EnableIfAttributeProcessor.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\LucidEditor.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\Attributes\SectionHeaderAttributeProcessor.cs" />
-    <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\InspectorProperty\EditableInspectorProperty.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\Attributes\FoldoutGroupAttributeProcessor.cs" />
+    <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\InspectorProperty\EditableInspectorProperty.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\EditorColors.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\Attributes\PropertyOrderAttributeProcessor.cs" />
     <Compile Include="Assets\Ville\Autre\Import\Third Party\Lucid Editor\Editor\Attributes\HorizontalGroupAttributeProcessor.cs" />
