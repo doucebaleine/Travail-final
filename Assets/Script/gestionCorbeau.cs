@@ -37,7 +37,7 @@ public class gestionCorbeau : MonoBehaviour
 
 
         //SAUT
-        if (Input.GetKeyDown(KeyCode.W) && Physics2D.OverlapCircle(transform.position, 0.5f))
+        if (Input.GetKeyDown(KeyCode.W) && Physics2D.OverlapCircle(transform.position, 0.5f) && GetComponent<Animator>().GetBool("saut") == false)
         {
             velocitePerso.y = forceSaut;
             GetComponent<Animator>().SetBool("saut", true);
@@ -49,6 +49,7 @@ public class gestionCorbeau : MonoBehaviour
         if (velocitePerso.y == 0)
         {
             GetComponent<Animator>().SetBool("saut", false);
+            
         }
 
         //On applique les forces sur le rigidbody
