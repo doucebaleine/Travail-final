@@ -10,12 +10,15 @@ public class gestionCorbeau : MonoBehaviour
     public float vitesseDeplacement;
     public float forceSaut;
 
-    //VARIABLE CAMÉRA
+    //VARIABLE CAMï¿½RA
     public GameObject cameraPrincipale;
     public GameObject cameraChateau;
+    public GameObject cameraCaverne;
 
     //VARIABLE OBJETS
     public TextMeshProUGUI nombreMonnaie;
+
+    int compteur = 0;
 
     private Vector2 velocitePerso;
     // Start is called before the first frame update
@@ -65,13 +68,19 @@ public class gestionCorbeau : MonoBehaviour
         //On applique les forces sur le rigidbody
         GetComponent<Rigidbody2D>().velocity = velocitePerso;
 
-        //GESTION CAMÉRA
+        //GESTION CAMERA
 
-        if (transform.position.x >= 71f)
+        if (transform.position.x >= 71f && transform.position.y >= -6f)
 
         {
             cameraPrincipale.gameObject.SetActive(false);
+            cameraCaverne.gameObject.SetActive(false);
             cameraChateau.gameObject.SetActive(true);
+        }
+        else if (transform.position.y <= -6f) {
+            cameraPrincipale.gameObject.SetActive(false);
+            cameraCaverne.gameObject.SetActive(true);
+            cameraChateau.gameObject.SetActive(false);
         }
         else
         {
@@ -85,9 +94,9 @@ public class gestionCorbeau : MonoBehaviour
         
         if (infoCollision.gameObject.name == "Monnaie")
         {
-            print("bouh");
             Destroy(infoCollision.gameObject);
-            
+            compteur++;
+            nombreMonnaie.text = compteur.ToString();
         }
     }
 }

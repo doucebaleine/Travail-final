@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,5 +29,10 @@ public class gestionCamera : MonoBehaviour
         laPosition.z = -20;
         
         transform.position = laPosition;
+
+        if (cibleASuivre.transform.position.x >= 114)
+        {
+            limiteDroite = 132;
+        }
     }
 }
