@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class gestionCorbeau : MonoBehaviour
 {
+    //VARIABLE DEPLACEMENT
     public float vitesseDeplacement;
     public float forceSaut;
+
+    //VARIABLE CAMÉRA
+    public GameObject cameraPrincipale;
+    public GameObject cameraChateau;
+
+    //VARIABLE OBJETS
+    public TextMeshProUGUI nombreMonnaie;
 
     private Vector2 velocitePerso;
     // Start is called before the first frame update
@@ -46,15 +56,39 @@ public class gestionCorbeau : MonoBehaviour
         {
             velocitePerso.y = GetComponent<Rigidbody2D>().velocity.y;
         }
-        if (velocitePerso.y == 0)
+        if (velocitePerso.y < 1)
         {
             GetComponent<Animator>().SetBool("saut", false);
-            
+
         }
 
         //On applique les forces sur le rigidbody
         GetComponent<Rigidbody2D>().velocity = velocitePerso;
-        
+
+        //GESTION CAMÉRA
+
+        if (transform.position.x >= 71f)
+
+        {
+            cameraPrincipale.gameObject.SetActive(false);
+            cameraChateau.gameObject.SetActive(true);
+        }
+        else
+        {
+            cameraPrincipale.gameObject.SetActive(true);
+            cameraChateau.gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D infoCollision)
+    {
+        
+        if (infoCollision.gameObject.name == "Monnaie")
+        {
+            print("bouh");
+            Destroy(infoCollision.gameObject);
+            
+        }
+    }
+}
 
