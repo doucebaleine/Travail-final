@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jeu principal.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Fin Mort.unity
+    guid: a82dcd3c29a4add40949437dcd7d0072
+  - enabled: 1
+    path: Assets/Scenes/Fin Succes.unity
+    guid: a13eaad7b54747a47b3b01c35d0758df
+  - enabled: 1
+    path: Assets/Scenes/Fin Temps.unity
+    guid: 3ec52f191e75f2846ab6f7c3144ce6bf
   m_configObjects: {}
