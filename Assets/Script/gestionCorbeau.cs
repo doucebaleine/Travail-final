@@ -11,6 +11,12 @@ public class gestionCorbeau : MonoBehaviour
     public float vitesseDeplacement;
     public float forceSaut;
     public float monter;
+
+    public GameObject toucheE;
+    public GameObject dialogue1Villageois1;
+    public GameObject dialogue2Villageois1;
+    public GameObject dialogue1Villageois2;
+    public GameObject dialogue2Villageois2;
     
     private float nbSaut = 0;
 
@@ -20,7 +26,6 @@ public class gestionCorbeau : MonoBehaviour
 
     private bool tpOk = true;
 
-    public GameObject coffreOutline;
 
     //VARIABLE CAM�RA
     public GameObject cameraPrincipale;
@@ -35,11 +40,18 @@ public class gestionCorbeau : MonoBehaviour
     public GameObject pierreInventaire;
     public GameObject pierre;
     public GameObject coffre;
+    public GameObject monnaieVillageois;
+    public GameObject cleVillageois;
+
+    public GameObject pont3;
+    public GameObject pont4;
 
     public GameObject tp1;
     public GameObject tp2;
 
     private bool coffreOk = false;
+    private bool bouteilleOk = false;
+    private bool pierreOk = false;
 
     public AudioClip sonMonnaie;
     public AudioClip sonCorbeau;
@@ -85,7 +97,6 @@ public class gestionCorbeau : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W) && Physics2D.OverlapCircle(transform.position, 0.5f) && GetComponent<Animator>().GetBool("saut") == false) || nbSaut == 1 && Input.GetKeyDown(KeyCode.W))
         {
             nbSaut = nbSaut+1;
-            print(nbSaut);
             velocitePerso.y = forceSaut;
             GetComponent<Animator>().SetBool("saut", true);
         }
@@ -131,6 +142,10 @@ public class gestionCorbeau : MonoBehaviour
             cameraChateau.gameObject.SetActive(false);
             cameraCaverne.gameObject.SetActive(false);
         }
+
+        
+
+
         //Si le joueur perd sa vie, on termine le jeu
         if (vie == 0)
         {
@@ -139,8 +154,7 @@ public class gestionCorbeau : MonoBehaviour
         }
         //Si c'est possible d'interagir avec le coffre...
         if (coffreOk)
-        {   //On signale au joueur qu'il peut inetragir avec le coffre a l'aide d'un outline
-            coffreOutline.gameObject.SetActive(true);
+        {
             //Si le joueur pese sur "E"...
             if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -150,6 +164,48 @@ public class gestionCorbeau : MonoBehaviour
                     pierre.gameObject.SetActive(true);
                     //On enleve la cle de l'inventaire
                     cleInventaire.gameObject.SetActive(false);
+                    //On enlève le bouton d'interaction
+                    toucheE.gameObject.SetActive(false);
+                    coffreOk = false;
+                }
+        }
+        if (bouteilleOk)
+        {
+            //Si le joueur pese sur "E"...
+            if (Input.GetKeyDown(KeyCode.E))
+                {
+                    //On affiche la cle
+                    cleVillageois.gameObject.SetActive(true);
+                    //On affiche la monnaie
+                    monnaieVillageois.gameObject.SetActive(true);
+                    //On enleve la bouteille de l'inventaire
+                    bouteilleInventaire.gameObject.SetActive(false);
+                    //On enlève le bouton d'interaction
+                    toucheE.gameObject.SetActive(false);
+                    bouteilleOk = false;
+                    //On change la boitea de dialogue
+                    dialogue2Villageois1.gameObject.SetActive(true);
+                    //On detruit la premiere
+                    dialogue1Villageois1.gameObject.SetActive(false);
+                }
+        }
+        if (pierreOk)
+        {
+            //Si le joueur pese sur "E"...
+            if (Input.GetKeyDown(KeyCode.E))
+                {
+                    //On active l'animation des ponts
+                    pont3.gameObject.GetComponent<Animator>().enabled = true;
+                    pont4.gameObject.GetComponent<Animator>().enabled = true;
+                    //On enleve la pierre de l'inventaire
+                    pierreInventaire.gameObject.SetActive(false);
+                    //On enlève le bouton d'interaction
+                    toucheE.gameObject.SetActive(false);
+                    pierreOk = false;
+                    //On change la boite de dialogue
+                    dialogue2Villageois2.gameObject.SetActive(true);
+                    //On detruit la premiere
+                    dialogue1Villageois2.gameObject.SetActive(false);
                 }
         }
     }
@@ -183,6 +239,8 @@ public class gestionCorbeau : MonoBehaviour
             if (cleInventaire.gameObject.activeSelf == true)
             {   //...on donne la possibilite d'interagir avec le coffre
                 coffreOk = true;
+                //On affiche la touche "E" pour indiquer la possibilité d'interaction;
+                toucheE.gameObject.SetActive(true);
             }
         }
         if (infoCollision.gameObject.name == "Pierre")
@@ -225,12 +283,59 @@ public class gestionCorbeau : MonoBehaviour
         if (infoCollision.gameObject.name == "Trou"){
             SceneManager.LoadScene("Fin Mort");
         }
+
+        if (infoCollision.gameObject.name == "Villageois1")
+        {
+            if (bouteilleOk == false)
+            {
+                //On active la premiere boite de dialogue
+                dialogue1Villageois1.gameObject.SetActive(true);
+                //...et on la desactive apres 3sec
+                Invoke("desactiverBoite1",3f);
+                    //Si le corbeau est en possession de la bouteille...
+                    if (bouteilleInventaire.gameObject.activeSelf == true)
+                    {   //...on donne la possibilite d'interagir avec le villageois
+                        bouteilleOk = true;
+                        //On affiche la touche "E" pour indiquer la possibilité d'interaction;
+                        toucheE.gameObject.SetActive(true);
+                    }
+            }
+            
+        } 
+        if (infoCollision.gameObject.name == "Villageois2")
+        {
+            if (pierreOk == false)
+            {
+                //On active la premiere boite de dialogue...
+            dialogue1Villageois2.gameObject.SetActive(true);
+            //...et on la desactive apres 3sec
+            Invoke("desactiverBoite2",3f);
+                //Si le corbeau est en possession de la pierre...
+                if (pierreInventaire.gameObject.activeSelf==true)
+                {   //...on donne la possibilite d'interagir avec le villageois
+                    pierreOk = true;
+                    //On affiche la touche "E" pour indiquer la possibilité d'interaction;
+                    toucheE.gameObject.SetActive(true);
+                }
+            }
+        }
+            
+        if (infoCollision.gameObject.name == "Cle")
+        {
+            cleInventaire.gameObject.SetActive(true);
+            Destroy(infoCollision.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D infoCollision)
     {
         if (Physics2D.OverlapCircle(transform.position, 0.5f))
-        {   //si le joueur est sur la plateforme amovible...
+        {   
+            //On arrete l'animation de saut
+            GetComponent<Animator>().SetBool("saut", false);
+            //On remet le nb de saut a 0
+            nbSaut = 0;
+            //si le joueur est sur la plateforme amovible...
             if (infoCollision.gameObject.tag == "plateforme")
             {   //...on les fait bouger
                 transform.parent = infoCollision.gameObject.transform;
@@ -302,6 +407,24 @@ public class gestionCorbeau : MonoBehaviour
     {
         //On reactive la possibilite de se teleporter
         tpOk = true;
+    }
+
+    private void desactiverBoite1()
+    {
+        if (bouteilleOk == false)
+        {
+           dialogue1Villageois1.gameObject.SetActive(false); 
+        }
+        
+    }
+
+    private void desactiverBoite2()
+    {
+        if (pierreOk == false)
+        {
+            dialogue1Villageois2.gameObject.SetActive(false);
+        }
+        
     }
 }
 
